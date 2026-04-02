@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import useSWR from "swr"
@@ -105,7 +105,7 @@ function FlashDealCard({ deal }: { deal: FlashDeal }) {
         <div className="mt-3">
           <div className="relative h-5 overflow-hidden rounded-full bg-primary/20">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-primary to-orange-400 transition-all"
+              className="absolute inset-y-0 left-0 rounded-full bg-linear-to-r from-primary to-orange-400 transition-all"
               style={{ width: `${soldPercent}%` }}
             />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -135,10 +135,12 @@ export default function FlashDealsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
       <main className="mx-auto max-w-7xl px-4 py-6">
         {/* Header */}
-        <div className="mb-6 flex flex-col items-center justify-between gap-4 rounded-sm bg-gradient-to-r from-primary to-orange-500 p-6 text-white sm:flex-row">
+        <div className="mb-6 flex flex-col items-center justify-between gap-4 rounded-sm bg-linear-to-r from-primary to-orange-500 p-6 text-white sm:flex-row">
           <div className="flex items-center gap-3">
             <Zap className="h-10 w-10 fill-white" />
             <div>

@@ -13,7 +13,6 @@ export default function Providers({
         <CartProvider>
             <AuthModalProvider>
                 {children}
-
                 {/* Global popup modal */}
                 <AuthModal />
             </AuthModalProvider>

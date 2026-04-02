@@ -4,11 +4,14 @@ import { FeatureIcons } from "@/components/home/feature-icons"
 import { FlashDeals } from "@/components/home/flash-deals"
 import { CategoriesSection } from "@/components/home/categories-section"
 import { ProductsGrid } from "@/components/home/products-grid"
+import { Suspense } from "react"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
       <main>
         <HeroBanner />
         <FeatureIcons />

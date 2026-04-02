@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, use } from "react"
+import { useState, use, Suspense } from "react"
 import Image from "next/image"
 import useSWR from "swr"
 import { Star, MapPin, Truck, Shield, Minus, Plus, ShoppingCart, Heart } from "lucide-react"
@@ -36,7 +36,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         <main className="mx-auto max-w-7xl px-4 py-6">
           <div className="flex gap-8">
             <Skeleton className="aspect-square w-96 rounded-sm" />
@@ -102,9 +104,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`relative h-16 w-16 overflow-hidden rounded-sm border-2 ${
-                        selectedImage === index ? "border-primary" : "border-border"
-                      }`}
+                      className={`relative h-16 w-16 overflow-hidden rounded-sm border-2 ${selectedImage === index ? "border-primary" : "border-border"
+                        }`}
                     >
                       <Image src={img} alt="" fill className="object-cover" />
                     </button>

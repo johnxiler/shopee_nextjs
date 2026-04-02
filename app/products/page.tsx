@@ -16,7 +16,7 @@ function ProductsContent() {
   const searchParams = useSearchParams()
   const search = searchParams.get("search") || ""
   const category = searchParams.get("category") || ""
-  
+
   const apiUrl = `/api/products?${new URLSearchParams({
     ...(search && { search }),
     ...(category && { category }),
@@ -27,7 +27,9 @@ function ProductsContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
       <main className="mx-auto max-w-7xl px-4 py-6">
         {/* Breadcrumb */}
         <div className="mb-4 text-sm text-muted-foreground">

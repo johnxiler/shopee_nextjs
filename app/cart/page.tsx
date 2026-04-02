@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useCart } from "@/lib/cart-context"
 import { formatPrice } from "@/lib/data"
+import { Suspense } from "react"
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart()
@@ -15,7 +16,9 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         <main className="mx-auto max-w-7xl px-4 py-16">
           <div className="flex flex-col items-center justify-center rounded-sm bg-card py-16">
             <ShoppingCart className="h-24 w-24 text-muted-foreground/50" />
@@ -143,7 +146,7 @@ export default function CartPage() {
           <div className="w-full lg:w-80">
             <div className="sticky top-32 rounded-sm bg-card p-6">
               <h2 className="mb-4 text-lg font-medium text-card-foreground">Order Summary</h2>
-              
+
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal ({items.length} items)</span>
