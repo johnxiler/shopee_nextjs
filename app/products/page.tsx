@@ -27,9 +27,6 @@ function ProductsContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Suspense fallback={null}>
-        <Header />
-      </Suspense>
       <main className="mx-auto max-w-7xl px-4 py-6">
         {/* Breadcrumb */}
         <div className="mb-4 text-sm text-muted-foreground">
@@ -124,20 +121,25 @@ function ProductsContent() {
 
 export default function ProductsPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-background">
-        <div className="h-32 bg-primary" />
-        <div className="mx-auto max-w-7xl px-4 py-6">
-          <Skeleton className="h-8 w-64 mb-4" />
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <Skeleton key={i} className="aspect-square w-full rounded-sm" />
-            ))}
+    <div className="min-h-screen bg-background">
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
+      <Suspense fallback={
+        <div className="min-h-screen bg-background">
+          <div className="h-32 bg-primary" />
+          <div className="mx-auto max-w-7xl px-4 py-6">
+            <Skeleton className="h-8 w-64 mb-4" />
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <Skeleton key={i} className="aspect-square w-full rounded-sm" />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    }>
-      <ProductsContent />
-    </Suspense>
+      }>
+        <ProductsContent />
+      </Suspense>
+    </div>
   )
 }
